@@ -34,6 +34,9 @@ export class User {
 
     @Prop()
     deletedAt: Date;
+
+    @Prop({ default: true }) // Soft delete flag
+    isActive: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

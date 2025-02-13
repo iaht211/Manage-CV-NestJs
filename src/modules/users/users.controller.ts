@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto/users.dto';
+import { TransformIdInterceptor } from 'src/interceptors/tranform-id.interceptors';
 
 @Controller('users')
+// @UseInterceptors(TransformIdInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
 
