@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
-  ) {}
+  ) { }
 
   // 1️⃣ Create User
   async createUser(createUserDto: CreateUserDto): Promise<User> {
@@ -73,6 +73,14 @@ export class UsersService {
     const deletedUser = await this.userModel.findByIdAndDelete(userId).exec();
     if (!deletedUser) throw new NotFoundException('User not found');
     return { message: 'User permanently deleted' };
+  }
+
+  async getUserByUsername(username: string) {
+    const user = await this.userModel.findOne({ email: username });
+
+    if (user) {
+      return user.toObject();
+    }
   }
 }
 

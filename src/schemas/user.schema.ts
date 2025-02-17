@@ -23,6 +23,9 @@ export class User {
     @Prop()
     address: string;
 
+    @Prop({ default: 'user' })
+    role: string;
+
     @Prop()
     createdAt: Date;
 
