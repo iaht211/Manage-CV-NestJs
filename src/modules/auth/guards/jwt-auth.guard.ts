@@ -18,14 +18,13 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
             return true
         }
-        console.log('isPublic', context);
         return super.canActivate(context);
     }
 
     handleRequest(err, user, info) {
         // You can throw an exception based on either "info" or "err" arguments
         if (err || !user) {
-            throw err || new UnauthorizedException();
+            throw err || new UnauthorizedException("Token không hợp lệ or không có token ở Brearer Token ở Header request");
         }
         return user;
     }

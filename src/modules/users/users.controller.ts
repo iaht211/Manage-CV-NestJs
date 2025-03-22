@@ -1,13 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto/users.dto';
+import { Public } from 'src/decorator/customize';
 
 @Controller('users')
 // @UseInterceptors(TransformIdInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
-
   }
+
+  @Public()
   @Post()
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);

@@ -8,7 +8,7 @@ async function bootstrap() {
   dotenv.config();
 
   app.useGlobalInterceptors(new TransformIdInterceptor());
-
+  app.enableCors();
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
